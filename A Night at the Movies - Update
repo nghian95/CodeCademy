@@ -1,0 +1,37 @@
+movies = {Harry_Potter: 4}
+  puts "You can either 'add', 'update', 'display' or 'delete'. \nWould you like to 'add' a movie to the roster? \nYou can also 'update' movies already in the roster. \nTo see what movies are in the roster, use 'display'. \nFinally, to delete any movies from the roster, type 'delete'."
+choice = gets.chomp
+
+case choice
+  when "add"
+    puts "What's the name of the movie you want to add?"
+    title = gets.chomp.tr(' ','_').to_sym
+    puts "What rating would you give it?"
+    rating = gets.chomp.to_i
+  if movies[title] == nil
+    movies[title] = rating
+    puts "The movie and it's rating have been added!"
+  else
+    puts "Error: The movie has already been added."
+  end
+  when "update"
+    puts "What movie would you like to update?"
+    title = gets.chomp.tr(' ','_').to_sym
+  if movies[title] == nil
+    puts "Error: Movie not found."
+  else
+    puts "What's the new rating?"
+    rating = gets.chomp
+    movies[title] = rating
+    puts "Rating has been updated!"
+    puts title.to_s.tr("_"," ") + ": " + rating + "/5"
+  end
+  when "display"
+    puts "Movies!"
+  when "delete"
+    puts "Deleted!"
+else
+  puts "Error!"
+end
+
+puts movies
